@@ -38,7 +38,10 @@ namespace ParticleStorm.Modules
 				{
 					module.maxKillSpeed = 0;
 				}
-				onCollision = ParticleScript.GetCollisionScript(collisionScript);
+				if (collisionScript.Length > 0)
+				{
+					onCollision = ParticleScript.GetCollisionScript(collisionScript);
+				}
 				ps.collisionModule = this;
 			}
 		}

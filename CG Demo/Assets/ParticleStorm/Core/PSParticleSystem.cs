@@ -77,7 +77,7 @@ namespace ParticleStorm.Core
 				nextColliderIndex = (nextColliderIndex + 1) % ps.trigger.maxColliderCount;
 				// Collider script
 				CollisionEvent collisionScript = collisionModule.onCollision;
-				if (collisionScript.OnGameObjectCollision != null)
+				if (collisionScript != null && collisionScript.OnGameObjectCollision != null)
 				{
 					ps.GetCollisionEvents(other, collisionEvents);
 					collisionScript.OnGameObjectCollision(other, collisionEvents);
@@ -87,7 +87,7 @@ namespace ParticleStorm.Core
 
 		private void OnParticleTrigger()
 		{
-			if (collisionModule.enabled && collisionModule.onCollision.OnParticleCollision != null)
+			if (collisionModule.enabled && collisionModule.onCollision != null && collisionModule.onCollision.OnParticleCollision != null)
 			{
 				particles.Trigger(collisionModule.onCollision.OnParticleCollision, collisionModule.triggerType);
 			}

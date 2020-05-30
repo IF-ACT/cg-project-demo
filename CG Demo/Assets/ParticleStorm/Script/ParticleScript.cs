@@ -6,7 +6,7 @@ namespace ParticleStorm.Script
 	/// <summary>
 	/// Manages all scripts about particle.
 	/// </summary>
-	internal static class ParticleScript
+	public static class ParticleScript
 	{
 		/// <summary>
 		/// Add a event for update.
