@@ -19,6 +19,12 @@ public class ParticleStormManager : MonoBehaviour
             
     }
 
+    private void PlayerAtkStorm()
+    {
+        Storm storm = new Storm("PlayerAtkStorm");
+        storm.AddBehavior(0, EmitList.Cone(5, 1, 0, 75), Particle.Find("PlayerAttack"), 0.3f);
+    }
+
     void Awake()
     {
         AddScripts();
@@ -43,11 +49,13 @@ public class ParticleStormManager : MonoBehaviour
     private void CreateStorms()
     {
         BasicStorm1();
+        PlayerAtkStorm();
     }
 
     private void AddScripts()
     {
         ParticleScript.AddCollisionScript(new CollisionEvent("Damage10", Damage10));
+        ParticleScript.AddCollisionScript(new CollisionEvent("PlayerAttack", PlayerAttack));
     }
 
     // Particle scripts
@@ -56,7 +64,16 @@ public class ParticleStormManager : MonoBehaviour
         if (go.CompareTag("Player"))
         {
             int damage = events.Count * 10;
-            Debug.Log("Hit " + damage);
+            go.GetComponent<Player>().Damaged(damage);
+        }
+    }
+
+    void PlayerAttack(GameObject go, List<ParticleCollisionEvent> events)
+    {
+        if (go.CompareTag("Boss"))
+        {
+            int damage = events.Count * 25;
+            go.GetComponent<Boss>().Damaged(damage);
         }
     }
 }

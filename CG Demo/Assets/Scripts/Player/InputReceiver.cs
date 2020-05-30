@@ -11,6 +11,7 @@ public class InputReceiver : MonoBehaviour
     void Start()
     {
         player = GetComponent<Charactor>();
+        p = GetComponent<Player>();
         eulaAim = player.transform.rotation.eulerAngles;
         camara = cameraGameObject.GetComponent<MyCamera>();
         camara.direction = Quaternion.Euler(eulaAim) * Vector3.forward;
@@ -41,6 +42,7 @@ public class InputReceiver : MonoBehaviour
         if (value.Get<float>() > 0)
         {
             player.Fire(1);
+            p.Attack();
         }
         else
         {
@@ -88,5 +90,6 @@ public class InputReceiver : MonoBehaviour
     private bool locked;
     private MyCamera camara;
     private Charactor player;
+    private Player p;
     private Vector3 eulaAim;
 }

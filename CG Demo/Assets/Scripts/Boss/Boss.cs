@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Boss : MonoBehaviour
     private float aimHeightH;
     [SerializeField]
     private float aimHeightL;
+    [SerializeField]
+    private float ringSize;
 
     private bool begin = false;
     private bool attack = false;
@@ -29,28 +32,36 @@ public class Boss : MonoBehaviour
     private StormGenerator generator;
     private Storm basicEmitStorm;
     private ParticleSystem ring;
+    private Image healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
+        healthBar = GameObject.Find("Canvas/Simple Bar/Status Fill 01").GetComponent<Image>();
         charactor = GetComponent<Charactor>();
         player = GameObject.Find("Player");
+        ring = GetComponentInChildren<ParticleSystem>();
         Life = startLife;
+        generator = GetComponent<StormGenerator>();
         if (beginOnStart)
         {
             Begin();
         }
-        generator = GetComponent<StormGenerator>();
-        ring = GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateHealthBar();
         if (!begin)
         {
             LookAtPlayer();
             return;
+        }
+        else
+        {
+            var main = ring.main;
+            main.startSize = Vector3.Distance(transform.position, player.transform.position) * ringSize;
         }
         // AI
         if (Life > startLife * 3 / 4)
@@ -102,11 +113,21 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void Damaged(float value)
+    {
+        Life -= value;
+    }
+
     public void Begin()
     {
         begin = true;
         GetComponent<Rigidbody>().useGravity = false;
         ring.Play();
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.fillAmount = Life / startLife;
     }
 
     private void LookAtPlayer()
