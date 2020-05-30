@@ -73,6 +73,18 @@ public class InputReceiver : MonoBehaviour
         }
     }
 
+    public void OnLookAtBoss(InputValue value)
+    {
+        if (value.Get<float>() > 0)
+        {
+            camara.LookAtBoss = true;
+        }
+        else
+        {
+            camara.LookAtBoss = false;
+        }
+    }
+
     private bool locked;
     private MyCamera camara;
     private Charactor player;

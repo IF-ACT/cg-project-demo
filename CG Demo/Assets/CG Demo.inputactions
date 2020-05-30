@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LookAtBoss",
+                    "type": "PassThrough",
+                    "id": "5ef579c2-ffee-4aef-8319-d96e9a2a2c10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -316,6 +324,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6144db3-261e-4407-9eb6-cb8bb66bfa3f",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LookAtBoss",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
