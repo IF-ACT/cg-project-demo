@@ -15,7 +15,7 @@ MonoBehaviour:
   useParticleSystem: 1
   basicModule:
     renderMode: 0
-    material: {fileID: 0}
+    material: {fileID: 2100000, guid: 6b22999712355474795091cef25021b4, type: 2}
     materials: []
     mesh: {fileID: 0}
     defaultParams:
@@ -98,7 +98,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         m_ConstantMin: 0
-        m_ConstantMax: 1
+        m_ConstantMax: 1.5
   colorBySpeedModule:
     enabled: 0
     color:
@@ -391,10 +391,10 @@ MonoBehaviour:
       m_ConstantMax: 0
     sizeMultiplier: 1
   collisionModule:
-    enabled: 0
-    kill: 0
+    enabled: 1
+    kill: 1
     triggerType: 0
-    collisionScript: 
+    collisionScript: PlayerAttack
     quality: 0
   velocityOverLifetimeModule:
     enabled: 0

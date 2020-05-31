@@ -101,7 +101,7 @@ public class Boss : MonoBehaviour
         }
         else if (Life > startLife * 1 / 2)
         {
-
+            
         }
         else if (Life > startLife * 1 / 4)
         {
@@ -115,7 +115,14 @@ public class Boss : MonoBehaviour
 
     public void Damaged(float value)
     {
-        Life -= value;
+        if (!begin)
+        {
+            Begin();
+        }
+        else
+        {
+            Life -= value;
+        }
     }
 
     public void Begin()
